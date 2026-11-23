@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <rect width="400" height="500" fill="#eaf2f8"/>
+  <g opacity="0.06" stroke="#2f5f8f" stroke-width="2">
+    <line x1="0" y1="0" x2="0" y2="500"/><line x1="60" y1="0" x2="60" y2="500"/><line x1="120" y1="0" x2="120" y2="500"/><line x1="180" y1="0" x2="180" y2="500"/><line x1="240" y1="0" x2="240" y2="500"/><line x1="300" y1="0" x2="300" y2="500"/><line x1="360" y1="0" x2="360" y2="500"/>
+    <line x1="0" y1="0" x2="400" y2="0"/><line x1="0" y1="60" x2="400" y2="60"/><line x1="0" y1="120" x2="400" y2="120"/><line x1="0" y1="180" x2="400" y2="180"/><line x1="0" y1="240" x2="400" y2="240"/><line x1="0" y1="300" x2="400" y2="300"/><line x1="0" y1="360" x2="400" y2="360"/><line x1="0" y1="420" x2="400" y2="420"/><line x1="0" y1="480" x2="400" y2="480"/>
+  </g>
+  <g transform="translate(200,150)">
+    <rect x="-14" y="0" width="28" height="40" rx="6" fill="#2f5f8f"/>
+    <path d="M-55,20 Q-55,80 0,95 Q55,80 55,20 Z" fill="#2f5f8f"/>
+    <rect x="-120" y="25" width="26" height="70" rx="8" fill="#2f5f8f"/>
+    <rect x="94" y="25" width="26" height="70" rx="8" fill="#2f5f8f"/>
+    <rect x="-30" y="95" width="60" height="60" rx="10" fill="#2f5f8f"/>
+    <path d="M-40,155 Q-40,180 40,180 Q40,155 0,155 Z" fill="#2f5f8f"/>
+  </g>
+  <text x="200" y="430" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="#2f5f8f" opacity="0.9">Thobe Emirati</text>
+  <text x="200" y="455" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff" opacity="0.85" font-weight="bold">THOBE-EMIRATI</text>
+  <text x="200" y="475" text-anchor="middle" font-family="Arial" font-size="9" fill="#d8cfc0" opacity="0.8">PLUS ONE STORE</text>
+</svg>

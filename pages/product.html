@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk — Plus One Store</title>
+  <meta name="description" content="Butiran produk Plus One Store. Pakaian muslimah moden.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Pergi ke kandungan</a>
+
+  <header id="top">
+    <div class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="index.html">
+          <img src="images/plusone-logo.svg" alt="Plus One Store">
+          <span>Plus One Store</span>
+          <span class="tagline">Kedai Muslimah Moden</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="menu" id="menu">
+          <a href="index.html">Utama</a>
+          <a href="shop.html">Shop</a>
+          <a href="shop.html?cat=labuh-longgar">Labuh &amp; Longgar</a>
+          <a href="shop.html?cat=jubah">Jubah &amp; Thobe</a>
+          <a href="shop.html?cat=kurung">Kurung</a>
+          <a href="shop.html?cat=batik">Batik</a>
+          <a href="about.html">Tentang</a>
+          <a href="contact.html">Hubungi</a>
+          <a href="cart.html" class="cart-btn">Beli
+            <span class="badge" id="cart-count">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="pages-header" id="main">
+    <div class="wrap">
+      <h1>Detail Produk</h1>
+      <p class="sub">Lihat butiran &amp; tambah ke beli</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div id="product-detail">
+      <div class="card" style="text-align:center;padding:48px;">
+        <div style="font-size:2.5rem;">📦</div>
+        <h2 style="font-size:1.3rem;">Produk Tidak Ditemukan</h2>
+        <p style="color:var(--ink-soft);">Maaf, produk dengan ID tersebut tidak wujud. Kembali ke <a href="shop.html" style="color:var(--brand);">tiap pasaran</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer style="padding-top:0;">
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Plus One Store. Kedai dalam talian.</span>
+        <span>Mangsa: 0800-1234 (Malaysia)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const p = window._current;
+      if (!p) {
+        document.getElementById("product-detail").innerHTML =
+          '<div class="card" style="text-align:center;padding:48px;"><div style="font-size:2.5rem;">📦</div><h2 style="font-size:1.3rem;">Produk Tidak Ditemukan</h2><p style="color:var(--ink-soft);">Maaf, produk dengan ID tersebut tidak wujud. Kembali ke <a href="shop.html" style="color:var(--brand);">tiap pasaran</a>.</p></div>';
+        return;
+      }
+      const orig = window.formatPriceOrig(p);
+      const origHtml = orig ? '<span class="mrp">' + orig + "</span>" : "";
+      const tabs = [
+        { id: "desc", label: "Deskripsi" },
+        { id: "fit", label: "Ciri-ciri" },
+        { id: "fit", label: "Pilihan Khas" }
+      ];
+      const tabsHtml = tabs.map(function (t) {
+        return '<button class="tab" data-tab="' + t.id + '">' + t.label + "</button>";
+      }).join("");
+      document.getElementById("product-detail").innerHTML =
+        '<div class="prod-thumbs">' +
+          '<img class="prod-main" id="main-image" src="images/placeholders/' + p.image + '.svg" alt="' + p.name + '">' +
+          '<div class="prod-thumb active" data-thumb="">' +
+            '<img src="images/placeholders/' + p.image + '.svg" alt="">' +
+          "</div>" +
+          '<div class="prod-thumb" data-thumb="">' +
+            '<img src="images/placeholders/' + p.image + '.svg" alt="">' +
+          "</div>" +
+          '<div class="prod-thumb" data-thumb="">' +
+            '<img src="images/placeholders/' + p.image + '.svg" alt="">' +
+          "</div>" +
+        "</div>" +
+
+        '<div class="prod-details">' +
+          '<h1 class="prod-name">' + p.name + "</h1>" +
+          '<p class="prod-desc">' + p.desc + "</p>" +
+          '<div class="price-row">' +
+            "<span class=\"price\">" + window.formatPrice(p) + origHtml + "</span>" +
+            (p.badge ? '<span class="badge" style="background:var(--amber);color:#fff;padding:4px 10px;border-radius:20px;font-size:.85rem;font-weight:800;">' + p.badge + "</span>" : "") +
+          "</div>" +
+
+          '<div class="prod-meta">' +
+            '<span><b>Saiz:</b> ' + (p.sizes || []).join(", ") + "</span>" +
+            '<span><b>Warna:</b> ' + (p.colors || []).join(", ") + "</span>" +
+            '<span><b>Bahan:</b> ' + (p.features || []).join(", ") + "</span>" +
+            '<span><b>Disediakan:</b> ' + (p.sizes || []).length + " saiz" + "</span>" +
+          "</div>" +
+
+          '<div class="pro-option-row">' +
+            '<label for="qty">Kuantiti:</label>' +
+            '<div class="qty-row">' +
+              '<button id="qty-dec">−</button>' +
+              '<input id="qty" type="number" value="1" min="1" max="99">' +
+              '<button id="qty-inc">+</button>' +
+            "</div>" +
+          "</div>" +
+
+          '<button class="add-to-cart" id="add-to-cart">Tambah ke beli</button>' +
+
+          '<div class="skills">' +
+            '<span class="skill">👔 Modest fashion</span>' +
+            '<span class="skill">🫶 Plus size</span>' +
+            '<span class="skill">🌿 Natural fabrics</span>' +
+            '<span class="skill">💝 Terimapati</span>' +
+          "</div>" +
+
+          '<div class="collapse">Jelaskan lebih lanjut <i>(faedah produk &amp; penggunaan)</i> <div class="collapse-inner">' +
+            '<p>Produk ini direka untuk kenyakan seharian tanpa mengurangkan elemen moden. Bahagian dalam menggunakan bahan yang menyegarkan dan lembut.</p>' +
+            '<p>Warna telah dipilih untuk memenuhi pelbagai acara, dari harian hingga perayaan.</p>' +
+          "</div></div>" +
+
+          '<div class="skills" style="margin-top:14px;">' +
+            '<span class="skill">✨ Rambut yang lembut</span>' +
+            '<span class="skill">📏 Ramalan panjang</span>' +
+            '<span class="skill">🏷️ Bahan natural</span>' +
+          "</div>" +
+
+        "</div>";
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hubungi Kami — Plus One Store</title>
+  <meta name="description" content="Hubungi Plus One Store via talian, jeti, atau email.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Pergi ke kandungan</a>
+
+  <header id="top">
+    <div class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="index.html">
+          <img src="images/plusone-logo.svg" alt="Plus One Store">
+          <span>Plus One Store</span>
+          <span class="tagline">Kedai Muslimah Moden</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="menu" id="menu">
+          <a href="index.html">Utama</a>
+          <a href="shop.html">Shop</a>
+          <a href="about.html">Tentang</a>
+          <a href="contact.html" class="active">Hubungi</a>
+          <a href="cart.html" class="cart-btn">Beli
+            <span class="badge" id="cart-count">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="pages-header" id="main">
+    <div class="wrap">
+      <h1>Hubungi Kami</h1>
+      <p class="sub">Soalan, tuntutan, atau cadangan anda—kami di sini untuk menjawab.</p>
+    </div>
+  </section>
+
+  <main class="wrap" style="padding-top:18px;">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2 style="font-size:1.4rem;margin-bottom:12px;">Ketahui kami</h2>
+        <p><strong>Alamat:</strong></p>
+        <p>Plus One Store</p>
+        <p>Kuala Terengganu, Terengganu</p>
+        <p>Malaysia</p>
+        <p style="margin-top:14px;"><strong>Telefon:</strong></p>
+        <p>083-221 334 (hantar)</p>
+        <p>083-221 335 (gonjili)</p>
+        <p style="margin-top:14px;"><strong>Emel:</strong></p>
+        <p>sales@plusonestore.com</p>
+        <p style="margin-top:14px;"><strong>Lembaga:</strong></p>
+        <p>Bot - 08:00 semasa hingga 22:00</p>
+        <p class="mt">Sesetengah pertanyaan dijawab dengan pantas.</p>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault();alert('Terima kasih! Kami akan hubungi anda segera.');">
+        <h2 style="font-size:1.4rem;margin-bottom:14px;">Hantar mesej</h2>
+        <div class="form-group">
+          <label for="name">Nama</label>
+          <input type="text" id="name" name="name" placeholder="Nama anda" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Emel</label>
+          <input type="email" id="email" name="email" placeholder="email@contoh.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Perkara</label>
+          <select id="subject" name="subject">
+            <option>Soalan umum</option>
+            <option>Pesanan / Order</li>
+            <option>Kerjasama</option>
+            <option>Kesuaian / Rotasi / Return</li>
+            <option>Lain-lain</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Mesej</label>
+          <textarea id="message" name="message" placeholder="Tulis mesej anda di sini..." required></textarea>
+        </div>
+        <button class="btn btn-brand btn-block" type="submit">Hantar</button>
+      </form>
+    </div>
+  </main>
+
+  <footer style="padding-top:0;">
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Plus One Store. Kedai dalam talian.</span>
+        <span>Mangsa: 0800-1234 (Malaysia)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

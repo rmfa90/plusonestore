@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Plus One Store</title>
+  <meta name="description" content="Proses penyelesaian pesanan — Plus One Store e-commerce">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Pergi ke kandungan</a>
+
+  <header id="top">
+    <div class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="index.html">
+          <img src="images/plusone-logo.svg" alt="Plus One Store">
+          <span>Plus One Store</span>
+          <span class="tagline">Kedai Muslimah Moden</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="menu" id="menu">
+          <a href="index.html">Utama</a>
+          <a href="shop.html">Shop</a>
+          <a href="about.html">Tentang</a>
+          <a href="contact.html">Hubungi</a>
+          <a href="cart.html" class="cart-btn">Beli
+            <span class="badge" id="cart-count">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="pages-header" id="main">
+    <div class="wrap">
+      <h1>Checkout</h1>
+      <p class="sub">Luluskan pesanan anda.</p>
+    </div>
+  </section>
+
+  <main class="wrap" style="padding-top:18px;">
+    <div class="checkout-steps">
+      <div class="step active" id="step-summary">Ringkasan</div>
+      <div class="step" id="step-form">Butiran</div>
+      <div class="step" id="step-confirm">Selesaikan</div>
+    </div>
+
+    <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+      <div>
+        <div class="checkout-form" id="form-panel">
+          <h3 style="font-size:1.1rem;margin-bottom:14px;">Butiran pesanan</h3>
+          <div class="form-group">
+            <label for="fname">Nama</label>
+            <input type="text" id="fname" placeholder="Nama penuh" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Emel</label>
+            <input type="email" id="email" placeholder="email@contoh.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" placeholder="012-345 6789" required>
+          </div>
+          <div class="form-group">
+            <label for="address">Alamat</label>
+            <textarea id="address" rows="3" placeholder="Alamat lengkap Anda..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="postcode">Poskod</label>
+            <input type="text" id="postcode" placeholder="Contoh: 20000">
+          </div>
+          <div class="form-group">
+            <label for="city">Bandar / Kawasan</label>
+            <input type="text" id="city" placeholder="Kuala Terengganu" required>
+          </div>
+          <div class="form-group">
+            <label for="method">Kaedah pembayaran</label>
+            <select id="method">
+              <option>Cart</option>
+              <option>GIRO/e-GIRO</option>
+              <option>Duit Now</option>
+              <option>Card / VISA / MasterCard</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <button class="btn btn-brand btn-block" onclick="nextStep()">Seterusnya &rarr;</button>
+        </div>
+      </div>
+
+      <div class="checkout-summary" id="summary-panel" style="display:none;">
+        <h3>Ringkasan</h3>
+        <div id="summary-body"></div>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-ghost" onclick="prevStep()">&larr; Kembali</button>
+          <button class="btn btn-brand" onclick="confirmOrder()">Selesaikan pesanan</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="padding-top:0;">
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Plus One Store. Kedai dalam talian.</span>
+        <span>Mangsa: 0800-1234 (Malaysia)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    const stepSummary = document.getElementById("step-summary");
+    const stepForm = document.getElementById("step-form");
+    const stepConfirm = document.getElementById("step-confirm");
+    const formPanel = document.getElementById("form-panel");
+    const summaryPanel = document.getElementById("summary-panel");
+    const summaryBody = document.getElementById("summary-body");
+
+    let current = 0;
+
+    const steps = [stepSummary, stepForm, stepConfirm];
+
+    function nextStep() {
+      const items = window.__cart.getList();
+      if (current === 0 && items.length === 0) {
+        alert("Cart kosong. Sila tambah produk."); return;
+      }
+      steps[current].classList.remove("active");
+      current++;
+      steps[current].classList.add("active");
+      if (current === 1) {
+        stepForm.style.display = "block";
+        formPanel.style.display = "block";
+        summaryPanel.style.display = "none";
+        renderSummary();
+      } else if (current === 2) {
+        stepConfirm.style.display = "block";
+        summaryPanel.style.display = "block";
+        formPanel.style.display = "none";
+      }
+    }
+
+    function prevStep() {
+      steps[current].classList.remove("active");
+      current--;
+      steps[current].classList.add("active");
+      if (current === 1) {
+        formPanel.style.display = "block";
+        summaryPanel.style.display = "none";
+      } else if (current === 0) {
+        summaryPanel.style.display = "block";
+        formPanel.style.display = "none";
+      }
+    }
+
+    function renderSummary() {
+      const items = window.__cart.getList();
+      const total = window.__cart.getTotal();
+      summaryBody.innerHTML = items.map(function (i) {
+        return '<div class="sum-row"><span>' + escapeHtml(i.name) + "</span><span>" + formatPrice(i) + "</span></div>";
+      }).join("") +
+        '<div class="sum-row" style="border-top:2px solid var(--edge);padding-top:10px;font-weight:800;"><span>Jumlah</span><span>RM ' + total.toFixed(2) + "</span></div>";
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" } [c];
+      });
+    }
+
+    function confirmOrder() {
+      if (window.confirm("Pastikannya semua betul? Pesanan akan diasaskan.")) {
+        window.__cart.clearCart();
+        alert("Terima kasih! Pesanan anda telah disahkan. Kami akan menghubungi anda untuk pengesahan.");
+        current = 0;
+        steps.forEach(function (s) { s.classList.remove("active"); });
+        stepSummary.classList.add("active");
+        summaryPanel.style.display = "block";
+        formPanel.style.display = "none";
+        summaryBody.innerHTML = "<p>Pesanan telah disahkan. Terima kasih!</p>";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+import os, pathlib
+
+base = pathlib.Path("/c/Users/finan/plusonestore/images/placeholders")
+base.mkdir(parents=True, exist_ok=True)
+
+# category -> label & accent color for the placeholder background
+styles = {
+    "blouse": ("#f3e8dc", "#8a5a3b"),      # warm cream / terracotta
+    "jubah": ("#eaf2f8", "#2f5f8f"),       # night blue
+    "kurung": ("#f4ead2", "#7a643a"),      # gold cream
+    "kemeja": ("#e8eef4", "#4a6b8a"),      # soft blue-gray
+    "batik": ("#1f2a37", "#d4a53f"),       # dark navy / gold
+    "hijab": ("#faf0e8", "#b8860b"),       # cream / bronze
+    "koszul": ("#eaf2f8", "#2f6f6a"),      # teal
+    "plus": ("#fdf6ef", "#8a4a2b"),        # light warm
+    "kids": ("#e6f0e6", "#5a7d4a"),        # soft green
+    "accessories": ("#f2e8d8", "#a0522d"), # sand / saddle
+}
+
+product_styles = {
+    "blouse-luna": "blouse", "blouse-adelia": "blouse", "blouse-rania": "batik", "blouse-lina": "blouse",
+    "jubah-safiya": "jubah", "jubah-mira": "jubah", "jubah-nura": "jubah", "thobe-emirati": "jubah",
+    "kurung-bella": "kurung", "kurung-adib": "kurung", "kebaya-dol": "kurung",
+    "kemeja-adila": "kemeja", "kemeja-mini": "kemeja",
+    "blouse-batik": "batik", "batik-sedondon": "batik",
+    "hijab-lyra": "hijab", "hijab-zara": "hijab", "shawl-ansisa": "hijab",
+    "koszul-tenun": "koszul", "koszul-woven": "koszul",
+    "abaya-dhalia": "jubah", "plus-size-1": "plus", "plus-size-2": "plus", "plus-size-3": "plus",
+    "kids-batik": "kids", "kids-kebaya": "kids",
+    "selendang-akbar": "accessories", "tudung-nikmat": "accessories",
+}
+
+import re
+def slug(name):
+    return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+
+for fname in ["empty.svg"]:
+    (base / fname).write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500"><rect width="400" height="500" fill="#ece7de"/><ellipse cx="200" cy="260" rx="120" ry="150" fill="rgba(255,255,255,0.15)"/></svg>',
+        encoding="utf-8"
+    )
+
+for name, cat in product_styles.items():
+    bg, fg = styles[cat]
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <rect width="400" height="500" fill="{bg}"/>
+  <!-- subtle pattern -->
+  <g opacity="0.06" stroke="{fg}" stroke-width="2">
+    {''.join(f'<line x1="{i*60}" y1="0" x2="{i*60}" y2="500"/>' for i in range(7))}
+    {''.join(f'<line x1="0" y1="{i*60}" x2="400" y2="{i*60}"/>' for i in range(9))}
+  </g>
+  <!-- product silhouette -->
+  <g transform="translate(200,150)">
+    <!-- neck -->
+    <rect x="-14" y="0" width="28" height="40" rx="6" fill="{fg}"/>
+    <!-- body / bust -->
+    <path d="M-55,20 Q-55,80 0,95 Q55,80 55,20 Z" fill="{fg}"/>
+    <!-- arms -->
+    <rect x="-120" y="25" width="26" height="70" rx="8" fill="{fg}"/>
+    <rect x="94" y="25" width="26" height="70" rx="8" fill="{fg}"/>
+    <!-- waist -->
+    <rect x="-30" y="95" width="60" height="60" rx="10" fill="{fg}"/>
+    <!-- hips -->
+    <path d="M-40,155 Q-40,180 40,180 Q40,155 0,155 Z" fill="{fg}"/>
+  </g>
+  <!-- label -->
+  <text x="200" y="430" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="{fg}" opacity="0.9">{name.replace('-',' ').title()}</text>
+  <text x="200" y="455" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff" opacity="0.85" font-weight="bold">{slug(name).upper()}</text>
+  <text x="200" y="475" text-anchor="middle" font-family="Arial" font-size="9" fill="#d8cfc0" opacity="0.8">PLUS ONE STORE</text>
+</svg>'''
+    (base / f"{name}.svg").write_text(svg, encoding="utf-8")
+
+# summary
+print("Generated", len(list(base.glob("*.svg"))), "placeholder images")

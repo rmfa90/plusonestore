@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beli Cart — Plus One Store</title>
+  <meta name="description" content="Cart Anda — Plus One Store e-commerce">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Pergi ke kandungan</a>
+
+  <header id="top">
+    <div class="nav">
+      <div class="wrap nav-inner">
+        <a class="brand" href="index.html">
+          <img src="images/plusone-logo.svg" alt="Plus One Store">
+          <span>Plus One Store</span>
+          <span class="tagline">Kedai Muslimah Moden</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="menu" id="menu">
+          <a href="index.html">Utama</a>
+          <a href="shop.html">Shop</a>
+          <a href="about.html">Tentang</a>
+          <a href="contact.html">Hubungi</a>
+          <a href="cart.html" class="cart-btn">Beli
+            <span class="badge" id="cart-count">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="pages-header" id="main">
+    <div class="wrap">
+      <h1>Cart Anda</h1>
+      <p class="sub">Semua item yang dipilih.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="cart">
+      <div id="cart-list"></div>
+      <div class="cart-summary" id="cart-summary" style="display:none;"></div>
+    </div>
+  </main>
+
+  <footer style="padding-top:0;">
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Plus One Store. Kedai dalam talian.</span>
+        <span>Mangsa: 0800-1234 (Malaysia)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
